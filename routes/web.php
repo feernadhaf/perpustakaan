@@ -29,14 +29,7 @@ Route::post('/registration', [LoginController::class, 'store']);
 Route::post('/logout', [LoginController::class, 'Logout'])->middleware('auth');
 
 Route::post('/borrow', [BorrowController::class, 'store'])->middleware('auth');
-Route::prefix('dashboard')->middleware(['auth', 'isUser'])->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.dashboard', ['title' => 'Dashboard']);
-    });
-
-    Route::get('/borrow', [BorrowController::class, 'index']);
-    Route::delete('/borrow/{borrow}', [BorrowController::class, 'destroy']);
-});
+Route::get('/borrows/{user:slug}', [BorrowController::class, 'userIndex'])->middleware('auth')->name('borrows');
 
 Route::prefix('dashboard')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/', function () {
