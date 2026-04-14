@@ -20,7 +20,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->word(3, true);
+        $name = fake()->words(3, true);
 
         return [
             'name' => $name,

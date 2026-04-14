@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('borrowed_date');
             $table->date('due_date');
             $table->string('status');
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }

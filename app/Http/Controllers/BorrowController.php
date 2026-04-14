@@ -53,6 +53,9 @@ public function update(Request $request, Borrow $borrow)
 {
     // 1. Update status peminjaman
     $borrow->status = $request->status;
+    if ($request->filled('message')) {
+        $borrow->message = $request->message; // Simpan pesan jika status ditolak
+    }
     $borrow->save();
 
     // 2. Ambil data buku terkait
@@ -88,7 +91,13 @@ public function userIndex(User $user)
 
 
 
+public function detail(Borrow $borrow)
+{
+    $title = 'Detail peminjaman';
+    return view('borrow-detail', compact('title', 'borrow'));
+
 
 }
 
 
+}
