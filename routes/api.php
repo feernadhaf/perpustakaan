@@ -14,6 +14,8 @@ Route::get('/books/{id}',[ApiController::class,'show']);
 
 
 Route::post('/login',[ApiController::class,'login']);
+Route::get('/books/status/{status}',[ApiController::class,'booksByStatus']);
+Route::get('/books/search/{search}', [ApiController::class, 'search']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/books',[ApiController::class,'store']);
